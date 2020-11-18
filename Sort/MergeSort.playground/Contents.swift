@@ -5,10 +5,14 @@ func solution(_ array:[Int], _ commands:[[Int]]) -> [Int] {
     var answer = Array<Int>()
     
     for command in commands {
-        let splited = Array(array[command[0] - 1...command[1] - 1])
+        let i = command[0] - 1
+        let j = command[1] - 1
+        let k = command[2] - 1
+        
+        let splited = Array(array[i...j])
         let sorted = mergeSort(with: splited)
         
-        answer.append(sorted[command[2] - 1])
+        answer.append(sorted[k])
     }
     
     return answer
