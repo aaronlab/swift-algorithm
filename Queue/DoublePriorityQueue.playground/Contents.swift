@@ -2,33 +2,40 @@ import Foundation
 
 func solution(_ operations:[String]) -> [Int] {
     
-    // 고작 이 정도가 3단계?
-    
-    var temp = [Int]()
+    var temp = [Int]()  // TEMP STORAGE
     
     for operation in operations {
         
         if operation.contains("I") {
+            // INSERT
             let values = operation.split(separator: " ")
             guard let value = Int(values[1]) else { continue }
+            
             temp.append(value)
         } else {
             switch operation {
-            case Operation.deleteMax.rawValue:
+            
+            // DELETE MAX
+            case Operator.deleteMax.rawValue:
                 temp = temp.filter { $0 != temp.max() }
-            case Operation.deleteMinimum.rawValue:
+                
+            // DELETE MIN
+            case Operator.deleteMinimum.rawValue:
                 temp = temp.filter { $0 != temp.min() }
+                
+            // UNKNOWN
             default:
                 break
             }
         }
-        
     }
     
+    // isEmpty ? [0, 0] : [max, min]
     return [temp.max() ?? 0, temp.min() ?? 0]
 }
 
-enum Operation: String {
+/// Definition of Operators
+enum Operator: String {
     case deleteMax = "D 1"
     case deleteMinimum = "D -1"
 }
