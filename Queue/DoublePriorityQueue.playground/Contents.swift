@@ -13,12 +13,11 @@ func solution(_ operations:[String]) -> [Int] {
             guard let value = Int(values[1]) else { continue }
             temp.append(value)
         } else {
-            let cache = temp.sorted()
             switch operation {
             case Operation.deleteMax.rawValue:
-                temp = temp.filter { $0 != cache.max() }
+                temp = temp.filter { $0 != temp.max() }
             case Operation.deleteMinimum.rawValue:
-                temp = temp.filter { $0 != cache.min() }
+                temp = temp.filter { $0 != temp.min() }
             default:
                 break
             }
