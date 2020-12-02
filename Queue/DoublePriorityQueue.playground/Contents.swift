@@ -34,7 +34,7 @@ func solution(_ operations:[String]) -> [Int] {
     return [temp.max() ?? 0, temp.min() ?? 0]
 }
 
-/// Definition of Operators
+/// Definition of Delete Operators
 enum Operator: String {
     case deleteMax = "D 1"
     case deleteMinimum = "D -1"
