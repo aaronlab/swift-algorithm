@@ -4,7 +4,15 @@ class Solution {
     func isPalindrome(_ x: Int) -> Bool {
         guard x >= 0 else { return false }
         
-        return Array(String(x)).reversed() == Array(String(x))
+        var num = x , copy = x, reversed = 0
+        
+        while num != 0 {
+            let current = num % 10
+            reversed = reversed * 10 + current
+            num = num/10
+        }
+        
+        return reversed == copy
     }
 }
 
