@@ -3,11 +3,60 @@ import Foundation
 class Solution {
     func romanToInt(_ s: String) -> Int {
         var answer = 0
+        var temp = 0
         let symbols = Array(s).map { Symbol(rawValue: $0) }
-        for symbol in symbols {
-            guard let symbol = symbol else { continue }
-            answer += symbol.value
+        
+        if !symbols.isEmpty {
+            
+            for i in 0..<symbols.count {
+                
+                guard let symbol = symbols[i] else { break }
+                
+                if symbols.count - 1 > i {
+                    
+                    guard let nextValue = symbols[i + 1]?.value else { preconditionFailure("Index Error") }
+                    
+                    switch symbol {
+                    case .i:
+                        if nextValue == 5 || nextValue == 10 {
+                            temp += symbol.value
+                            continue
+                        } else {
+                            answer += symbol.value
+                            answer -= temp
+                            temp = 0
+                        }
+                        
+                    case .x:
+                        if nextValue == 50 || nextValue == 100 {
+                            temp += symbol.value
+                            continue
+                        } else {
+                            answer += symbol.value
+                            answer -= temp
+                            temp = 0
+                        }
+                        
+                    case .c:
+                        if nextValue == 500 || nextValue == 1000 {
+                            temp += symbol.value
+                            continue
+                        } else {
+                            answer += symbol.value
+                            answer -= temp
+                            temp = 0
+                        }
+                    default:
+                        answer += symbol.value
+                    }
+                } else {
+                    
+                    answer += symbol.value
+                    answer -= temp
+                }
+            }
         }
+        
         return answer
     }
     
