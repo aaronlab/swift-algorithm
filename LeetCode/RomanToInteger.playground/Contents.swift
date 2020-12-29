@@ -10,45 +10,34 @@ class Solution {
             
             for i in 0..<symbols.count {
                 
-                guard let symbol = symbols[i] else { break }
+                guard let symbol = symbols[i] else { preconditionFailure("Invalid Symbol") }
                 
                 if symbols.count - 1 > i {
+                    guard let nextValue = symbols[i + 1]?.value else { preconditionFailure("Symbol not Existing") }
                     
-                    guard let nextValue = symbols[i + 1]?.value else { preconditionFailure("Index Error") }
+                    var isTemp = false
                     
                     switch symbol {
                     case .i:
-                        if nextValue == 5 || nextValue == 10 {
-                            temp += symbol.value
-                            continue
-                        } else {
-                            answer += symbol.value
-                            answer -= temp
-                            temp = 0
-                        }
-                        
+                        isTemp = nextValue == 5 || nextValue == 10
                     case .x:
-                        if nextValue == 50 || nextValue == 100 {
-                            temp += symbol.value
-                            continue
-                        } else {
-                            answer += symbol.value
-                            answer -= temp
-                            temp = 0
-                        }
-                        
+                        isTemp = nextValue == 50 || nextValue == 100
                     case .c:
-                        if nextValue == 500 || nextValue == 1000 {
-                            temp += symbol.value
-                            continue
-                        } else {
-                            answer += symbol.value
-                            answer -= temp
-                            temp = 0
-                        }
+                        isTemp = nextValue == 500 || nextValue == 1000
                     default:
                         answer += symbol.value
+                        continue
                     }
+                    
+                    if isTemp {
+                        temp += symbol.value
+                        continue
+                    }
+                    
+                    answer += symbol.value
+                    answer -= temp
+                    temp = 0
+                    
                 } else {
                     
                     answer += symbol.value
@@ -60,6 +49,13 @@ class Solution {
         return answer
     }
     
+    
+}
+
+// MARK: - SYMBOL
+
+extension Solution {
+    
     enum Symbol: Character {
         case i = "I"
         case v = "V"
@@ -68,27 +64,33 @@ class Solution {
         case c = "C"
         case d = "D"
         case m = "M"
-        
-        var value: Int {
-            switch self {
-            case .i:
-                return 1
-            case .v:
-                return 5
-            case .x:
-                return 10
-            case .l:
-                return 50
-            case .c:
-                return 100
-            case .d:
-                return 500
-            case .m:
-                return 1000
-            }
-        }
-        
     }
+    
+}
+
+// MARK: - SYMBOL VALUE
+
+extension Solution.Symbol {
+    
+    var value: Int {
+        switch self {
+        case .i:
+            return 1
+        case .v:
+            return 5
+        case .x:
+            return 10
+        case .l:
+            return 50
+        case .c:
+            return 100
+        case .d:
+            return 500
+        case .m:
+            return 1000
+        }
+    }
+    
 }
 
 let solution = Solution()
