@@ -2,7 +2,7 @@ import Foundation
 
 class Solution {
     func mySqrt(_ x: Int) -> Int {
-        return Int(Double(x).squareRoot())
+        return Int(sqrt(Double(x)))
     }
 }
 
