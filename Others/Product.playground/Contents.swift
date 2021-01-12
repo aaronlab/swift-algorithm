@@ -1,5 +1,10 @@
 import Foundation
 
+struct Product {
+    let options: [Option]
+    let variants: [Variant]
+}
+
 struct Option {
     let name: String
     let priority: Int
@@ -17,6 +22,7 @@ struct Variant {
     let price: Price
     let value: Int
     let id: String
+    let types: [MyType]
 }
 
 struct Price {
