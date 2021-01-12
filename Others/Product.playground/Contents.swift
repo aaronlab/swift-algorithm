@@ -5,6 +5,25 @@ struct Product {
     let variants: [Variant]
 }
 
+extension Product {
+    
+    var allOptions: [String: [String]] {
+        var options = [String: [String]]()
+        
+        for option in self.options {
+            var variations = [String]()
+            for variation in option.variations {
+                
+                variations.append(variation.value)
+            }
+            options[option.name] = variations
+        }
+        
+        return options
+    }
+    
+}
+
 struct Option {
     let name: String
     let priority: Int
@@ -188,3 +207,5 @@ let product = Product(
         )
     ]
 )
+
+
