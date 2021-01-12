@@ -44,6 +44,18 @@ struct Variant {
     let types: [MyType]
 }
 
+extension Variant {
+    
+    var allValues: [String] {
+        var values = [String]()
+        for type in self.types {
+            values.append(type.variation.value)
+        }
+        return values
+    }
+    
+}
+
 struct Price {
     let value: Int
 }
@@ -84,8 +96,8 @@ let product = Product(
             name: "Size",
             priority: 1,
             variations: [
-                Variation(value: "M", priority: 0, id: "m"),
-                Variation(value: "S", priority: 1, id: "s"),
+                Variation(value: "S", priority: 0, id: "m"),
+                Variation(value: "M", priority: 1, id: "s"),
                 Variation(value: "L", priority: 2, id: "l"),
                 Variation(value: "XL", priority: 3, id: "xl")
             ],
@@ -208,4 +220,24 @@ let product = Product(
     ]
 )
 
+print(product.allOptions)
 
+
+func getSelectedVariantId(product: Product, selectedValues: [String]) -> String {
+    let variants = product.variants
+    
+    for variant in variants {
+        
+        for type in variant.types {
+            
+            print(type.variation.value)
+            
+        }
+    }
+    
+    return ""
+}
+
+let selectedOptions = ["White", "S"]
+
+print(getSelectedVariantId(product: product, selectedValues: selectedOptions))
