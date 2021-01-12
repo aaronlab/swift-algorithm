@@ -28,5 +28,18 @@ struct Sale {
 }
 
 struct MyType {
-    
+    let option: MyOption
+    let variation: MyVariation
+}
+
+struct MyOption {
+    let name: String
+    let priority: Int
+    let id: String
+}
+
+struct MyVariation {
+    let name: String
+    let priority: Int
+    let id: String
 }
