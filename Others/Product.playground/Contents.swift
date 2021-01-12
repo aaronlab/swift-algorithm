@@ -228,14 +228,14 @@ func getSelectedVariantId(product: Product, selectedValues: [String]) -> String 
     
     for variant in variants {
         
-        for type in variant.types {
+        if variant.allValues == selectedValues {
             
-            print(type.variation.value)
-            
+            return variant.id
         }
+        
     }
     
-    return ""
+    preconditionFailure("Not Found Id")
 }
 
 let selectedOptions = ["White", "S"]
