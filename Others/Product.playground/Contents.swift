@@ -241,3 +241,22 @@ func getSelectedVariantId(product: Product, selectedValues: [String]) -> String 
 let selectedOptions = ["White", "S"]
 
 print(getSelectedVariantId(product: product, selectedValues: selectedOptions))
+
+func getPlaceHolderValues(with product: Product) -> [String] {
+    var placeholder = [String]()
+    let allOptions = product.allOptions
+    for (_, values) in allOptions {
+        
+        if values.contains("L") {
+            placeholder.append("L")
+        } else {
+            placeholder.append(values[0])
+        }
+    }
+    return placeholder
+}
+
+let placeHolder = getPlaceHolderValues(with: product)
+print("Placeholder: \(placeHolder)")
+let placeHolderId = getSelectedVariantId(product: product, selectedValues: placeHolder)
+print(placeHolderId)
