@@ -13,9 +13,10 @@ func solution(_ priorities:[Int], _ location:Int) -> Int {
     
     var answer = 0
     
-    while !queue.isEmpty {
+    while true {
         let highestPriority = priorities[0]
-        let document = queue.removeFirst()
+        let document = queue[0]
+        queue.remove(at: 0)
         
         if document.priority == highestPriority {
             
