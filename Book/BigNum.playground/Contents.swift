@@ -4,31 +4,27 @@ func solution(_ numbers: [Int], _ m: Int, _ k: Int) -> Int {
     
     if numbers.isEmpty { fatalError("numbers needed") }
     
-    let copiedNumbers = numbers.sorted()
+    let copiedNumbers = Array(Set(numbers)).sorted()
     let biggest = copiedNumbers[copiedNumbers.count - 1]
     let second = copiedNumbers[copiedNumbers.count - 2]
     
-    var times = m
+    // 6 6 6 5 6 6 6 5
+    // (m / (k + 1)) * k
+    // 8 / 4 ==> 2 * 3 => 6
+    // ==> correct
+    
+    // 4 4 3 4 4 3 4
+    // (m / (k + 1) * k)
+    // 7 / (2 + 1) ==> 2 * 2 => 4
+    // ==> should be 5
+    
+    var count = (m / (k + 1)) * k
+    count += m % (k + 1)
     
     var answer = 0
     
-    while true {
-        
-        for _ in 0..<k {
-            
-            if times == 0 { break }
-            
-            answer += biggest
-            times -= 1
-            
-        }
-        
-        if times == 0 { break }
-        
-        answer += second
-        times -= 1
-        
-    }
+    answer += count * biggest
+    answer += (m - count) * second
     
     return answer
 }
