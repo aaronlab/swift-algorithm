@@ -2,17 +2,21 @@ import Foundation
 
 func solution(_ n: Int) -> Int {
     
-    for i in 1...24 {
+    var count = 0
+    
+    for i in 0..<n + 1 {
         // hrs
-        for j in 1...60 {
-            // mins
-            for k in 1...60 {
+        for j in 0..<60 {
+            for k in 0..<60 {
                 // secs
+                if "\(i)\(j)\(k)".contains("3") {
+                    count += 1
+                }
             }
         }
     }
     
-    return 0
+    return count
 }
 
-print(solution(1))
+print(solution(5))
