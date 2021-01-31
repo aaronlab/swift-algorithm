@@ -26,11 +26,6 @@ func solution(_ n: Int, _ k: Int) -> Int {
         
     }
     
-    while copy > 1 {
-        copy -= 1
-        count += 1
-    }
-    
     return count
 }
 
