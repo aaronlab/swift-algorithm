@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 class Node<Value> {
     
@@ -19,7 +19,7 @@ extension Node: CustomStringConvertible {
             return "\(value)"
         }
         
-        return "\(value) -> " + String(describing: next) + " "
+        return "\(value) -> \(String(describing: next)) "
     }
     
 }
