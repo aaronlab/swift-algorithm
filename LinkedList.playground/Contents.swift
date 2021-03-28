@@ -88,6 +88,20 @@ struct LinkedList<Value> {
         
     }
     
+    mutating func remove(after node: Node<Value>) -> Value? {
+        
+        defer {
+            if node.next === tail {
+                tail = node
+            }
+            
+            node.next = node.next?.next
+        }
+        
+        return node.next?.value
+        
+    }
+    
     init() {}
     
 }
@@ -144,4 +158,8 @@ let _ = list.pop()
 print(list)
 
 let _ = list.removeLast()
+print(list)
+
+let node = list.node(at: 0)!
+let _ = list.remove(after: node)
 print(list)
