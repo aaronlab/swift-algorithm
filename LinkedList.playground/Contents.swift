@@ -19,6 +19,19 @@ struct LinkedList<Value> {
         
     }
     
+    mutating func append(_ value: Value) {
+        
+        guard !isEmpty else {
+            push(value)
+            return
+        }
+        
+        let node = Node(value: value)
+        tail!.next = node
+        tail = node
+        
+    }
+    
     init() {}
     
 }
@@ -59,8 +72,9 @@ extension Node: CustomStringConvertible {
 }
 
 var list = LinkedList<Int>()
-list.push(2)
-list.push(3)
-list.push(22)
+list.append(10)
+list.append(3)
+list.append(12)
+list.push(1)
 
 print(list)
