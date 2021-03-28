@@ -50,6 +50,18 @@ struct LinkedList<Value> {
         
     }
     
+    mutating func pop() -> Value? {
+        
+        defer {
+            head = head?.next
+            if isEmpty {
+                tail = nil
+            }
+        }
+        
+        return head?.value
+    }
+    
     init() {}
     
 }
@@ -100,4 +112,7 @@ print(list)
 let middleNode = list.node(at: 1)!
 list.insert(999, after: middleNode)
 
+print(list)
+
+let _ = list.pop()
 print(list)
