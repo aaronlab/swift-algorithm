@@ -1,5 +1,18 @@
 import Foundation
 
+struct LinkedList<Value> {
+    
+    var head: Node<Value>?
+    var tail: Node<Value>?
+    
+    var isEmpty: Bool {
+        return head == nil
+    }
+    
+    init() {}
+    
+}
+
 class Node<Value> {
     
     var value: Value
@@ -25,12 +38,3 @@ extension Node: CustomStringConvertible {
     }
     
 }
-
-var node1 = Node(value: 1)
-var node2 = Node(value: 2)
-var node3 = Node(value: 3)
-
-node1.next = node2
-node2.next = node3
-
-print(node1)
