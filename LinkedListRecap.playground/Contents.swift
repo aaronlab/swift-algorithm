@@ -10,7 +10,25 @@ struct LinkedList<Value> {
         head = Node(value: value, next: head)
         
         if tail == nil {
+            
             tail = head
+            
+        }
+        
+    }
+    
+    mutating func append(_ value: Value) {
+        
+        if head == nil {
+            
+            push(value)
+            
+        } else {
+            
+            let node = Node(value: value)
+            tail!.next = node
+            tail = node
+            
         }
         
     }
@@ -31,7 +49,7 @@ extension LinkedList: CustomStringConvertible {
             return "Empty"
         }
         
-        return String(describing: head)
+        return "HEAD: \(String(describing: head)), TAIL: \(String(describing: tail))"
         
     }
     
@@ -68,5 +86,6 @@ var linkedList = LinkedList<Int>()
 linkedList.push(1)
 linkedList.push(2)
 linkedList.push(3)
+linkedList.append(0)
 
 print(linkedList)
