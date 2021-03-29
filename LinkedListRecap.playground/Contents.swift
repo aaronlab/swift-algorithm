@@ -92,6 +92,22 @@ struct LinkedList<Value> {
         
     }
     
+    mutating func remove(after node: Node<Value>) -> Value? {
+        
+        defer {
+            
+            if node.next === tail {
+                tail = node
+            }
+            
+            node.next = node.next?.next
+            
+        }
+        
+        
+        return node.next?.value
+    }
+    
     var isEmpty: Bool {
         return head == nil
     }
@@ -153,5 +169,8 @@ linkedList.insert(99, after: node)
 _ = linkedList.pop()
 
 _ = linkedList.removeLast()
+
+let node2 = linkedList.node(at: 1)!
+linkedList.remove(after: node2)
 
 print(linkedList)
