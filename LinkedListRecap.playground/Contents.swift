@@ -68,6 +68,30 @@ struct LinkedList<Value> {
         return head?.value
     }
     
+    mutating func removeLast() -> Value? {
+        
+        guard let head = head else {
+            return nil
+        }
+        
+        guard head.next != nil else {
+            return pop()
+        }
+        
+        var prev = head
+        var current = head
+        
+        while let next = current.next {
+            prev = current
+            current = next
+        }
+        
+        prev.next = nil
+        tail = prev
+        return current.value
+        
+    }
+    
     var isEmpty: Bool {
         return head == nil
     }
@@ -127,5 +151,7 @@ let node = linkedList.node(at: 1)!
 linkedList.insert(99, after: node)
 
 _ = linkedList.pop()
+
+_ = linkedList.removeLast()
 
 print(linkedList)
