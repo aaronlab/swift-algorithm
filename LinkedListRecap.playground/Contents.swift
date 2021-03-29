@@ -55,6 +55,19 @@ struct LinkedList<Value> {
         
     }
     
+    mutating func pop() -> Value? {
+        
+        defer {
+            head = head?.next
+            
+            if isEmpty {
+                tail = nil
+            }
+        }
+        
+        return head?.value
+    }
+    
     var isEmpty: Bool {
         return head == nil
     }
@@ -112,5 +125,7 @@ linkedList.append(0)
 
 let node = linkedList.node(at: 1)!
 linkedList.insert(99, after: node)
+
+_ = linkedList.pop()
 
 print(linkedList)
