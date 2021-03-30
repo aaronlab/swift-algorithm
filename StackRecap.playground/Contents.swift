@@ -6,6 +6,14 @@ struct Stack<Element> {
     
     init() {}
     
+    mutating func append(_ element: Element) {
+        storage.append(element)
+    }
+    
+    mutating func pop() -> Element? {
+        return storage.popLast()
+    }
+    
 }
 
 extension Stack: CustomStringConvertible {
@@ -25,3 +33,16 @@ extension Stack: CustomStringConvertible {
     }
     
 }
+
+var stack = Stack<Int>()
+
+stack.append(1)
+stack.append(2)
+stack.append(3)
+stack.append(4)
+stack.append(5)
+
+let last = stack.pop()!
+print(last)
+
+print(stack)
